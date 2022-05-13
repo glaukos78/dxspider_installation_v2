@@ -1,2 +1,32 @@
-# dxspider_installation_v2
-dxspider_installation
+
+Readme.md
+
+With this script you can install and configure in the few minutes the DxSpider Cluster with MOJO repository
+
+Installation Steps
+
+    Download script.
+
+    wget https://github.com/glaukos78/dxspider_installation_v2/archive/refs/heads/main.zip -Ο dxspider_installation.zip
+
+    Must be run as root user.
+
+    Uncompress & change permissions
+
+    unzip dxspider_installation.zip
+
+    cd dxspider_script/
+
+    chmod a+x install_dxspider.sh
+
+    Run script and follow the messages.
+
+    ./install_dxspider.sh
+
+Script has been tested on the following Operating Systems (Linux Distributions)
+
+    CentOS 7
+    Raspbian 8 (Jessie)
+    Raspbian 9 (stretch)
+    Debian GNU/Linux 9 (stretch)
+
