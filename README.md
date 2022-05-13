@@ -15,7 +15,7 @@ Uncompress & change permissions
 
     unzip dxspider_installation.zip
 
-    cd dxspider_script/
+    cd dxspider_installation_v2-main/
 
     chmod a+x install_dxspider.sh
 
