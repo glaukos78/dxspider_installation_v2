@@ -1,6 +1,3 @@
-
-Readme.md
-
 With this script you can install and configure in the few minutes the DxSpider Cluster with MOJO repository
 
 Installation Steps
