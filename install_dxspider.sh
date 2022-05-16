@@ -1,15 +1,17 @@
 #!/bin/bash
-# Script for deployment and configuration DxSpider Cluster  
+# Script for deployment and configuration DxSpider Cluster
 # Create By Yiannis Panagou, SV5FRI
 # http://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.9 - Last Modify 08/02/2022
+# Version 1.10 - Last Modify 16/05/2022
 #
 #Change Log
 #=====================================================================================================
 # 08/02/2022 - 1.8 - Update script to support Debian 11 (bullseye) & Raspbian GNU/Linux 11 (bullseye)
 # 08/02/2022 - 1.9 - Support Mojo installation
+# 15/05/2022 - 1.10 - Fix bug installation package into RHEL8/CentOS8/Rocky8
 #=====================================================================================================
+#
 #
 # Check the script is being run by root user
 check_run_user() {
@@ -31,42 +33,44 @@ check_distro() {
         else
                 distroname="$(uname -s) $(uname -r)"
         fi
-        
+
         echo -e " "
         echo -e "==============================================================="
         echo -e "      Your OS distribution is ${distroname}"
         echo -e "=============================================================== "
         echo -e " "
         echo -e " "
-        
-        read -n 1 -s -r -p $'Press any key to continue...\n'
+        read -n 1 -s -r -p $'Press any key to continue...'
         echo -e " "
-		
+
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
-                install_epel_7
-                install_package_CentOS_7
-			 elif [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
-				install_epel_8
-                install_package_CentOS_8
-		    elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
-				install_package_debian
-		    elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
-				install_package_debian
-			elif [ "${distroname}" == "Raspbian GNU/Linux 10 (buster)" ]; then
-				install_package_debian
-			elif [ "${distroname}" == "Debian GNU/Linux 10 (buster)" ]; then
-				install_package_debian
-			elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
-				install_package_debian
-			elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
-				install_package_debian
-		else
-			echo -e " "
-			echo -e "==============================================================="
-			echo -e "      Your OS distribution ${distroname} is not supported" 
-			echo -e "=============================================================== "
-			echo -e " "
-			echo -e " "
+                                install_epel_7
+                                install_package_CentOS_7
+                        elif [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
+                                install_epel_8
+                                install_package_CentOS_8
+                        elif [ "${distroname}" == "Rocky Linux 8.5 (Green Obsidian)" ]; then
+                                install_epel_8
+                                install_package_CentOS_8
+                        elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Raspbian GNU/Linux 10 (buster)" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Debian GNU/Linux 10 (buster)" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
+                                install_package_debian
+                else
+                        echo -e " "
+                        echo -e "==============================================================="
+                        echo -e "      Your OS distribution ${distroname} is not supported"
+                        echo -e "=============================================================== "
+                        echo -e " "
+                        echo -e " "
             exit 1
         fi
 }
@@ -76,8 +80,6 @@ check_distro() {
 install_epel_7() {
 #Install epel repository
 ## RHEL/CentOS 7 64-Bit ##
-# wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-# rpm -ivh epel-release-latest-7.noarch.rpm
 # Update the system
     yum check-update ; yum -y update
 # Install the additional package repository EPEL
@@ -87,9 +89,9 @@ install_epel_7() {
 # Install extra packages for CentOS 7.x
 install_package_CentOS_7() {
     echo -e "Starting Installation Dxspider Cluster"
-	echo -e " " 
+        echo -e " "
 # Update the system
-	yum check-update ; yum -y update
+        yum check-update ; yum -y update
 # Install extra packages
     yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress
 }
@@ -99,9 +101,10 @@ install_package_CentOS_7() {
 install_epel_8() {
 #Install epel repository
    echo -e "Starting Installation Dxspider Cluster"
-   echo -e " " 
+   echo -e " "
 ## RHEL/CentOS 8 64-Bit ##
 # Update the system
+    dnf makecache --refresh
     dnf check-update ; dnf -y update
 # Install the additional package repository EPEL
     dnf -y install epel-release
@@ -112,14 +115,14 @@ install_package_CentOS_8() {
 # Update the system
 	dnf check-update ; dnf -y update
 # Install extra packages
-    dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress
+	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite
 }
 
 ## Debian & raspbian
 #
 install_package_debian() {
     echo -e "Starting Installation Dxspider Cluster"
-	echo -e " " 
+        echo -e " "
 # Update the system
     apt-get update ; apt-get -y upgrade
 # Install extra packages
@@ -239,7 +242,7 @@ curl -L https://cpanmin.us | perl - App::cpanminus
 cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round
 
 
-echo -e " "    
+echo -e " "
 }
 
 config_app(){
@@ -292,8 +295,8 @@ echo -e " "
 
 if [ -f "/usr/lib/systemd/system/dxspider.service" ]; then
     echo "Files dxspider.service exist"
-else 
-	touch /usr/lib/systemd/system/dxspider.service
+else
+        touch /usr/lib/systemd/system/dxspider.service
 #
 cat >> /usr/lib/systemd/system/dxspider.service <<EOL
 [Unit]
@@ -334,17 +337,17 @@ main() {
         create_user_group
         echo -e " "
         install_spider
-		echo -e " "
+        echo -e " "
         echo -e "Now starting make dxspider configuration"
         echo -e " "
         echo -e "Config files location you can find below /spider/local/DXVars.pm"
         config_app
         echo -e " "
-		echo -e "Create systemd dxspider service"
+        echo -e "Create systemd dxspider service"
         create_service
         echo -e " "
-		enable_service
-		echo -e " "
+                enable_service
+                echo -e " "
 }
 # Call Script Main
 #
