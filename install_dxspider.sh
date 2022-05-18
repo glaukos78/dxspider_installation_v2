@@ -10,6 +10,7 @@
 # 08/02/2022 - 1.8 - Update script to support Debian 11 (bullseye) & Raspbian GNU/Linux 11 (bullseye)
 # 08/02/2022 - 1.9 - Support Mojo installation
 # 15/05/2022 - 1.10 - Fix bug installation package into RHEL8/CentOS8/Rocky8
+# 18/05/2022 - 1.11 - Fix installation added curl package for all distributions
 #=====================================================================================================
 #
 #
@@ -93,7 +94,7 @@ install_package_CentOS_7() {
 # Update the system
         yum check-update ; yum -y update
 # Install extra packages
-    yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress
+    yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress curl 
 }
 
 ## CentOS 8.x
@@ -115,7 +116,7 @@ install_package_CentOS_8() {
 # Update the system
 	dnf check-update ; dnf -y update
 # Install extra packages
-	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite
+	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
 }
 
 ## Debian & raspbian
@@ -126,7 +127,7 @@ install_package_debian() {
 # Update the system
     apt-get update ; apt-get -y upgrade
 # Install extra packages
-    apt-get -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl
+    apt-get -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-du mper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
 }
 
 
