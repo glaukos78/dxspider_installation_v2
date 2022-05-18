@@ -1,9 +1,9 @@
 #!/bin/bash
 # Script for deployment and configuration DxSpider Cluster
 # Create By Yiannis Panagou, SV5FRI
-# http://www.sv5fri.eu
+# https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.10 - Last Modify 16/05/2022
+# Version 1.12 - Last Modify 18/05/2022
 #
 #Change Log
 #=====================================================================================================
@@ -11,6 +11,7 @@
 # 08/02/2022 - 1.9 - Support Mojo installation
 # 15/05/2022 - 1.10 - Fix bug installation package into RHEL8/CentOS8/Rocky8
 # 18/05/2022 - 1.11 - Fix installation added curl package for all distributions
+# 18/05/2022 - 1.12 - Minor fix packages to Debian / Raspbian distributions
 #=====================================================================================================
 #
 #
@@ -127,7 +128,7 @@ install_package_debian() {
 # Update the system
     apt-get update ; apt-get -y upgrade
 # Install extra packages
-    apt-get -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-du mper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
+    apt-get -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
 }
 
 
