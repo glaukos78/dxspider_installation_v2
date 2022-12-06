@@ -14,7 +14,67 @@
 # 18/05/2022 - 1.12 - Minor fix packages to Debian / Raspbian distributions
 #=====================================================================================================
 #
+# Script for update DxSpider Cluster to Mojo versión
+# Kin EA3CV
+# Change Log
+#=====================================================================================================
+# 06-12-2022 - 1.0 First version
+#=====================================================================================================
 #
+#
+
+message() {
+	echo -e " "
+	echo -e "==============================================================="
+	echo -e "This update will make a Backup of the current DXSpider software"
+	echo -e "in the /home/spider.backup directory"
+	echo -e " "
+	echo -e "The new installation will use sysop as the DXSpider user"
+	echo -e "and as a group to which sysop belongs to spider."
+	echo -e " "
+	echo -e "The users, DB and configuration files will be maintained."
+	echo -e " "
+	echo -e "The new software will be defined as dxspider.service."
+	echo -e " "
+	echo -e "Only OS versions that have been verified will be supported."
+	echo -e "==============================================================="
+	echo -e " "
+	read -n 1 -s -r -p $'Press any key to continue...'
+	echo -e " "
+	echo -e "==============================================================="
+	echo -e "To continue with the update, press [U]"
+	echo -e "If you want to restore the backup due to failed update, press [B]"
+	echo -e "==============================================================="
+	echo -e " "
+	 echo -n "Please enter [U]pdate or [B]ackup: "
+	chr="\""
+	read UPBACK
+	echo ${UPBACK}
+	if [ "${UPBACK}" == "U" ]; then
+		# Nothing, we continue ...
+	elif [ "${UPBACK}" == "B" ]; then
+		echo -e "Indicate the path where it should be restored (eg /home/sysop): "
+		chr="\""
+		read BCKPATH
+		echo ${BCKPATH}
+		su - sysop -c "rm -rf /home/sysop/spider"
+		su - sysop -c "mv /home/spider.backup ${BCKPATH}"
+		if [ -f "/usr/lib/systemd/system/dxspider.service.old" ]; then
+			su - sysop -c "mv /usr/lib/systemd/system/dxspider.service.old /usr/lib/systemd/system/dxspider.service"
+			su - sysop -c "systemctl enable dxspider"
+			su - sysop -c "systemctl start dxspider"
+		else
+			echo -e "Ended process."
+			echo -e "Bye!"
+			exit 1			
+		fi		
+	else
+		echo -e " "
+		echo -e "Bye!"
+		exit 1
+	fi
+}
+
 # Check the script is being run by root user
 check_run_user() {
 if [ "$(id -u)" != "0" ]; then
@@ -91,9 +151,9 @@ install_epel_7() {
 # Install extra packages for CentOS 7.x
 install_package_CentOS_7() {
     echo -e "Starting Installation Dxspider Cluster"
-        echo -e " "
+    echo -e " "
 # Update the system
-        yum check-update ; yum -y update
+    yum check-update ; yum -y update
 # Install extra packages
     yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress curl 
 }
@@ -124,7 +184,7 @@ install_package_CentOS_8() {
 #
 install_package_debian() {
     echo -e "Starting Installation Dxspider Cluster"
-        echo -e " "
+    echo -e " "
 # Update the system
     apt-get update ; apt-get -y upgrade
 # Install extra packages
@@ -232,6 +292,33 @@ insert_qth() {
  su - sysop -c "sed -i 's/myqth =.*/myqth = ${chr}${MYQTH}${chr};/' /spider/local/DXVars.pm"
 }
 
+# Export users
+export_user() {
+	touch /tmp/backup_users
+	cat >> /tmp/backup_users <<EOL
+export_user
+EOL
+	su - sysop -c "mkdir ${PATHDXS/cmd_import"
+	su - sysop -c " mv /tmp/backup_users ${PATHDXS/cmd_import/backup_users"
+ }
+
+# Stop DXSpider
+stop_dxspider() {
+	echo -n "Stopping DXSpider..."
+	su - sysop -c "systemctl stop dxspider"
+	su - sysop -c "systemctl disable dxspider"
+	su - sysop -c "mv /usr/lib/systemd/system/dxspider.service /usr/lib/systemd/system/dxspider.service.old"
+	su - sysop -c "mv ${PATHDXS /home/spider.backup"
+}
+
+# Enter your actual path
+actual_path() {
+	echo -n "Please enter your actual path of DXSpider, eg /home/sysop/spider"
+	chr="\""
+	read PATHDXS
+	echo ${PATHDXS}
+}
+
 install_spider() {
 # Create symbolic links
 ln -s /home/sysop/spider /spider
@@ -245,6 +332,29 @@ cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round
 
 
 echo -e " "
+}
+
+update_files() {
+# Copy user files, DB, ...
+	echo -n "Copying user files, DB, ..."
+	su - sysop -c "mv ${PATHDXS /home/spider.backup"
+	su - sysop -c "mkdir /home/sysop/spider"
+	su - sysop -c "mkdir /home/sysop/spider/msg"
+	su - sysop -c "mkdir /home/sysop/spider/local_data"
+	su - sysop -c "mkdir /home/sysop/spider/cmd_import"
+
+	if [ -f "/home/spider.backup/local_data" ]; then
+		# Mojo
+		su - sysop -c "cp -r /home/spider.backup/local_data/ /home/sysop/spider/local_data/"
+	else
+		# Master
+		su - sysop -c "cp -r /home/spider.backup/data/ /home/sysop/spider/local_data/"
+	fi
+
+	if [ -f "/home/spider.backup/msg" ]; then
+		su - sysop -c "cp -r /home/spider.backup/msg/ /home/sysop/spider/msg/"
+	fi
+	su - sysop -c "cp -r /home/spider.backup/filter/ /home/sysop/spider/filter/"
 }
 
 config_app(){
@@ -332,12 +442,17 @@ systemctl enable dxspider
 
 
 main() {
+		message
         check_run_user
         echo -e " "
         check_distro
         echo -e " "
         create_user_group
         echo -e " "
+		actual_path
+		export_user
+		stop_dxspider
+		update_files
         install_spider
         echo -e " "
         echo -e "Now starting make dxspider configuration"
@@ -348,8 +463,8 @@ main() {
         echo -e "Create systemd dxspider service"
         create_service
         echo -e " "
-                enable_service
-                echo -e " "
+        enable_service
+        echo -e " "
 }
 # Call Script Main
 #
