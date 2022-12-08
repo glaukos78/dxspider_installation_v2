@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # Script for deployment and configuration DxSpider Cluster
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
@@ -23,7 +23,7 @@
 #
 #
 
-message() {
+messages() {
 	echo -e " "
 	echo -e "==============================================================="
 	echo -e "This update will make a Backup of the current DXSpider software"
@@ -41,37 +41,45 @@ message() {
 	echo -e " "
 	read -n 1 -s -r -p $'Press any key to continue...'
 	echo -e " "
+        echo -n "Indicates path where DXSpider is located or should be restored (eg /home/spider): "
+	chr="\""
+        read PATHDXS
+        echo -e " "
 	echo -e "==============================================================="
 	echo -e "To continue with the update, press [U]"
 	echo -e "If you want to restore the backup due to failed update, press [B]"
 	echo -e "==============================================================="
 	echo -e " "
-	 echo -n "Please enter [U]pdate or [B]ackup: "
+	echo -n "Please enter [U]pdate or [B]ackup: "
 	chr="\""
 	read UPBACK
 	echo ${UPBACK}
 	if [ "${UPBACK}" == "U" ]; then
-		# Nothing, we continue ...
+	        echo -e "==============================================================="
+        	echo -e "                     Updating DXSpider..."
+        	echo -e "==============================================================="
+
 	elif [ "${UPBACK}" == "B" ]; then
-		echo -e "Indicate the path where it should be restored (eg /home/sysop): "
-		chr="\""
-		read BCKPATH
-		echo ${BCKPATH}
-		su - sysop -c "rm -rf /home/sysop/spider"
-		su - sysop -c "mv /home/spider.backup ${BCKPATH}"
-		if [ -f "/usr/lib/systemd/system/dxspider.service.old" ]; then
-			su - sysop -c "mv /usr/lib/systemd/system/dxspider.service.old /usr/lib/systemd/system/dxspider.service"
-			su - sysop -c "systemctl enable dxspider"
-			su - sysop -c "systemctl start dxspider"
-		else
+                echo -e "==============================================================="
+                echo -e "                     Restore DXSpider..."
+                echo -e "==============================================================="
+                echo -e " "
+                su - -c "systemctl stop dxspider"
+		su - -c "rm -rf /home/sysop/spider"
+                su - sysop -c "mkdir ${PATHDXS}"
+		su - -c "cp -r /home/spider.backup/* ${PATHDXS}/../"
+		if [ -f "/etc/systemd/system/dxspider.service.old" ]; then
+			su - -c "mv /etc/systemd/system/dxspider.service.old /etc/systemd/system/dxspider.service"
+		fi
+			su - -c "systemctl enable dxspider"
+			su - -c "systemctl start dxspider"
 			echo -e "Ended process."
 			echo -e "Bye!"
-			exit 1			
-		fi		
+			exit 0
 	else
 		echo -e " "
 		echo -e "Bye!"
-		exit 1
+		exit 0
 	fi
 }
 
@@ -292,31 +300,23 @@ insert_qth() {
  su - sysop -c "sed -i 's/myqth =.*/myqth = ${chr}${MYQTH}${chr};/' /spider/local/DXVars.pm"
 }
 
-# Export users
-export_user() {
-	touch /tmp/backup_users
-	cat >> /tmp/backup_users <<EOL
-export_user
-EOL
-	su - sysop -c "mkdir ${PATHDXS/cmd_import"
-	su - sysop -c " mv /tmp/backup_users ${PATHDXS/cmd_import/backup_users"
- }
+# Enter your actual path
+#actual_path() {
+#	echo -n "Please enter your actual path of DXSpider, (eg /home/sysop/spider): "
+#	chr="\""
+#	read PATHDXS
+#}
 
 # Stop DXSpider
 stop_dxspider() {
 	echo -n "Stopping DXSpider..."
-	su - sysop -c "systemctl stop dxspider"
-	su - sysop -c "systemctl disable dxspider"
-	su - sysop -c "mv /usr/lib/systemd/system/dxspider.service /usr/lib/systemd/system/dxspider.service.old"
-	su - sysop -c "mv ${PATHDXS /home/spider.backup"
-}
-
-# Enter your actual path
-actual_path() {
-	echo -n "Please enter your actual path of DXSpider, eg /home/sysop/spider"
-	chr="\""
-	read PATHDXS
-	echo ${PATHDXS}
+	echo -e " "
+	su - -c "systemctl stop dxspider"
+	su - -c "systemctl disable dxspider"
+	su - -c "mv /etc/systemd/system/dxspider.service /etc/systemd/system/dxspider.service.old"
+	su - -c "mkdir /home/spider.backup"
+	su - -c "cp -r ${PATHDXS}/ /home/spider.backup"
+	su - -c "chown -R sysop.spider /home/spider.backup"
 }
 
 install_spider() {
@@ -334,27 +334,18 @@ cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round
 echo -e " "
 }
 
-update_files() {
-# Copy user files, DB, ...
+# Move DB, user files, ...
+move_files() {
 	echo -n "Copying user files, DB, ..."
-	su - sysop -c "mv ${PATHDXS /home/spider.backup"
-	su - sysop -c "mkdir /home/sysop/spider"
-	su - sysop -c "mkdir /home/sysop/spider/msg"
-	su - sysop -c "mkdir /home/sysop/spider/local_data"
-	su - sysop -c "mkdir /home/sysop/spider/cmd_import"
+	echo -e " "
 
-	if [ -f "/home/spider.backup/local_data" ]; then
-		# Mojo
-		su - sysop -c "cp -r /home/spider.backup/local_data/ /home/sysop/spider/local_data/"
+	if [ -f "/home/sysop/spider" ]; then
+	    echo "Same path ..."
 	else
-		# Master
-		su - sysop -c "cp -r /home/spider.backup/data/ /home/sysop/spider/local_data/"
+                su - sysop -c "mkdir /home/sysop/spider"
+	        su - sysop -c "cp -r ${PATHDXS}/* /home/sysop/spider"
 	fi
-
-	if [ -f "/home/spider.backup/msg" ]; then
-		su - sysop -c "cp -r /home/spider.backup/msg/ /home/sysop/spider/msg/"
-	fi
-	su - sysop -c "cp -r /home/spider.backup/filter/ /home/sysop/spider/filter/"
+	su - sysop -c "cp -r ${PATHDXS}/data/* /home/sysop/spider/local_data"
 }
 
 config_app(){
@@ -405,12 +396,12 @@ echo -e " "
 # systemd script from spider directory to /etc/systemd/system/
 #
 
-if [ -f "/usr/lib/systemd/system/dxspider.service" ]; then
+if [ -f "/etc/systemd/system/dxspider.service" ]; then
     echo "Files dxspider.service exist"
 else
-        touch /usr/lib/systemd/system/dxspider.service
+        touch /etc/systemd/system/dxspider.service
 #
-cat >> /usr/lib/systemd/system/dxspider.service <<EOL
+cat >> /etc/systemd/system/dxspider.service <<EOL
 [Unit]
 Description= Dxspider DXCluster service
 After=network.target
@@ -438,21 +429,20 @@ enable_service() {
 echo -e "Enable Dxspider Service to start up"
 echo -e " "
 systemctl enable dxspider
+systemctl start dxspider
 }
 
 
 main() {
-		message
+	messages
         check_run_user
+        stop_dxspider
+        move_files
         echo -e " "
         check_distro
         echo -e " "
         create_user_group
         echo -e " "
-		actual_path
-		export_user
-		stop_dxspider
-		update_files
         install_spider
         echo -e " "
         echo -e "Now starting make dxspider configuration"
