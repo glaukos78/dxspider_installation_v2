@@ -37,3 +37,7 @@ Remember that it is only for updating, for a new installation look at the develo
 
 	https://github.com/glaukos78/dxspider_installation_v2
 
+Those sysops who want to be informed or participate in the evolution, new versions/builds and doubts about DXSpider, can request to subscribe to the official list:
+
+	https://mailman.tobit.co.uk/mailman/listinfo/dxspider-support
+	
