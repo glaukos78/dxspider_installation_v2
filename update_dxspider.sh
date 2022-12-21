@@ -7,8 +7,8 @@
 # Create By Kin, EA3CV and based on the code of Yiannis Panagou, SV5FRI
 #
 # E-mail: ea3cv@cronux.net
-# Version 0.1
-# Date 20221214
+# Version 0.2
+# Date 20221221
 #
 
 
@@ -85,6 +85,8 @@ check_distro() {
                         elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
+                                install_package_debian
+			elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
                                 install_package_debian
                 else
                         echo -e " "
