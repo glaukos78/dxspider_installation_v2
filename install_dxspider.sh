@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.12 - Last Modify 18/05/2022
+# Version 1.13 - Last Modify 02/01/2023
 #
 #Change Log
 #=====================================================================================================
@@ -12,8 +12,11 @@
 # 15/05/2022 - 1.10 - Fix bug installation package into RHEL8/CentOS8/Rocky8
 # 18/05/2022 - 1.11 - Fix installation added curl package for all distributions
 # 18/05/2022 - 1.12 - Minor fix packages to Debian / Raspbian distributions
+# 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition), 
+#                     Fedora Linux 37 (Workstation Edition)
 #=====================================================================================================
-#
+ 
+ #                      Fedora Linux 37 (Workstation Edition)#
 #
 # Check the script is being run by root user
 check_run_user() {
@@ -66,6 +69,17 @@ check_distro() {
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
+			elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
+    				install_package_debian
+			elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
+      				install_package_debian
+			elif [ "${distroname}" == "Fedora Linux 37 (Server Edition)" ]; then
+      				install_epel_8
+      				install_package_CentOS_8
+			elif [ "${distroname}" == "Fedora Linux 37 (Workstation Edition)" ]; then
+      				install_epel_8
+      				install_package_CentOS_8
+						
                 else
                         echo -e " "
                         echo -e "==============================================================="
