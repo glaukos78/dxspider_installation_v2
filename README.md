@@ -13,13 +13,13 @@ Uncompress & change permissions
 
     unzip dxspider_update.zip
 
-    cd dxspider_update-devel/
+    cd dxspider_installation_v2-devel/
 
-    chmod a+x dxspider_update.sh
+    chmod a+x update_dxspider.sh
 
 Run script and follow the messages.
 
-    ./dxspider_update.sh
+    ./update_dxspider.sh
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
