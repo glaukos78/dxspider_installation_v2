@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.13 - Last Modify 02/01/2023
+# Version 1.14 - Last Modify 23/01/2023
 #
 #Change Log
 #=====================================================================================================
@@ -14,11 +14,12 @@
 # 18/05/2022 - 1.12 - Minor fix packages to Debian / Raspbian distributions
 # 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition), 
 #                     Fedora Linux 37 (Workstation Edition)
+# 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanx HG8LXL Laci)
 #=====================================================================================================
  
  #                      Fedora Linux 37 (Workstation Edition)#
 #
-# Check the script is being run by root user
+# Check the script is being run by root user)
 check_run_user() {
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
@@ -79,6 +80,8 @@ check_distro() {
 			elif [ "${distroname}" == "Fedora Linux 37 (Workstation Edition)" ]; then
       				install_epel_8
       				install_package_CentOS_8
+			elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
+                                install_package_debian
 						
                 else
                         echo -e " "
