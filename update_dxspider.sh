@@ -68,6 +68,9 @@ check_distro() {
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                                 install_epel_7
                                 install_package_CentOS_7
+                        elif [ "${distroname}" == "CentOS Linux 7 (AltArch)" ]; then
+                                install_epel_7
+                                install_package_CentOS_7
                         elif [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
                                 install_epel_8
                                 install_package_CentOS_8
@@ -221,6 +224,7 @@ install_package_CentOS_7()
 	yum check-update ; yum -y update
 	# Install extra packages
 	yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress curl libnet-cidr-lite-perl
+	cpanm install Curses
 }
 
 ## CentOS 8.x
