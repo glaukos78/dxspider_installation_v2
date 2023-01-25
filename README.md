@@ -24,6 +24,7 @@ Run script and follow the messages.
 Script has been tested on the following Operating Systems (Linux Distributions)
 
     CentOS 7
+    CentOS 7 (AltArch)
     CentOS 8
     Rocky 8
     Raspbian 9 (stretch)
