@@ -151,7 +151,7 @@ install_package_debian() {
 
 # Create User and group - Create Directory and Symbolic Link
 check_if_exist_user() {
-egrep -i "^sysop:" /etc/passwd;
+grep -E "^sysop:" /etc/passwd;
     if [ $? -eq 0 ]; then
         echo "User Exists no created"
     else
@@ -164,7 +164,7 @@ egrep -i "^sysop:" /etc/passwd;
 }
 
 check_if_exist_group() {
-egrep -i "^spider" /etc/group;
+grep -E "^spider" /etc/group;
     if [ $? -eq 0 ]; then
         echo "Group Exists"
     else
