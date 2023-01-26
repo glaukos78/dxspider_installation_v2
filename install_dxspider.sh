@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.14 - Last Modify 23/01/2023
+# Version 1.15 - Last Modify 26/01/2023
 #
 #Change Log
 #=====================================================================================================
@@ -15,6 +15,7 @@
 # 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition), 
 #                     Fedora Linux 37 (Workstation Edition)
 # 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanx HG8LXL Laci)
+# 2601/20223 - 1.15 - Fix deprecate code
 #=====================================================================================================
  
  #                      Fedora Linux 37 (Workstation Edition)#
