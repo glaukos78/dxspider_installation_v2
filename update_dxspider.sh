@@ -136,9 +136,9 @@ config_app()
 	ln -s ${DXSPATH}/perl/console.pl /usr/local/bin/dx
 	ln -s ${DXSPATH}/perl/*dbg /usr/local/bin
 
-	su - $OWNER -c "chown -R $OWNER.$GROUP spider"
-	su - $OWNER -c "find ./ -type d -exec chmod 2775 {} \;"
-	su - $OWNER -c "find ./ -type f -exec chmod 775 {} \;"
+	chown -R $OWNER.$GROUP spider
+	find ./ -type d -exec chmod 2775 {} \;
+	find ./ -type f -exec chmod 775 {} \;
 	su - $OWNER -c "mkdir -p ${DXSPATH}/local"
 	su - $OWNER -c "mkdir -p ${DXSPATH}/cmd_import"
 	su - $OWNER -c "mkdir -p ${DXSPATH}/local_cmd"
