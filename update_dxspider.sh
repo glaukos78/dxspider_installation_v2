@@ -89,7 +89,7 @@ check_distro() {
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
-			elif [ "${distroname}" == "Ubuntu 20.04.5 TS" ]; then
+			elif [ "${distroname}" == "Ubuntu 20.04.5 LTS" ]; then
                                 install_package_debian
 			elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
                                 install_package_debian
