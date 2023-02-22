@@ -33,7 +33,7 @@ Script has been tested on the following Operating Systems (Linux Distributions)
     Debian GNU/Linux 11 (bullseye)
     Ubuntu 22.04 LTS
     Ubuntu 22.04.1 LTS
+    Ubuntu 22.04.2 LTS
     Fedora Linux 37 (Server Edition)
     Fedora Linux 37 (Workstation Edition)
     Debian GNU/Linux bookworm/sid
-    Ubuntu 22.04.2 LTS
