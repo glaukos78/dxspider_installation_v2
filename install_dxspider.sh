@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.15 - Last Modify 22/02/2023
+# Version 1.16 - Last Modify 21/03/2023
 #
 #Change Log
 #=====================================================================================================
@@ -15,10 +15,11 @@
 # 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition), 
 #                     Fedora Linux 37 (Workstation Edition)
 # 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanks HG8LXL Laci)
-# 23/01/2023 - 1.15 - Added supportUbuntu 22.04.2 LTS (Thanks F5LEN )
+# 23/01/2023 - 1.15 - Added support Ubuntu 22.04.2 LTS (Thanks F5LEN )
+# 21/03/2023 - 1.16 - Added support Linux Mint 21.1 
 #=====================================================================================================
  
- #                      Fedora Linux 37 (Workstation Edition)#
+# Fedora Linux 37 (Workstation Edition)#
 #
 # Check the script is being run by root user)
 check_run_user() {
@@ -84,6 +85,8 @@ check_distro() {
       				install_epel_8
       				install_package_CentOS_8
 			elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
+                                install_package_debian
+			elif [ "${distroname}" == "Linux Mint 21.1" ]; then
                                 install_package_debian
 						
                 else
