@@ -16,7 +16,7 @@
 #                     Fedora Linux 37 (Workstation Edition)
 # 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanks HG8LXL Laci)
 # 23/01/2023 - 1.15 - Added support Ubuntu 22.04.2 LTS (Thanks F5LEN )
-# 21/03/2023 - 1.16 - Added support Linux Mint 21.1 
+# 21/03/2023 - 1.16 - Added support Linux Mint 21.1 (Thanks G7VJA)
 #=====================================================================================================
  
 # Fedora Linux 37 (Workstation Edition)#
