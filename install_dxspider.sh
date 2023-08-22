@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.16 - Last Modify 21/03/2023
+# Version 1.17 - Last Modify 22/08/2023
 #
 #Change Log
 #=====================================================================================================
@@ -17,6 +17,7 @@
 # 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanks HG8LXL Laci)
 # 23/01/2023 - 1.15 - Added support Ubuntu 22.04.2 LTS (Thanks F5LEN )
 # 21/03/2023 - 1.16 - Added support Linux Mint 21.1 (Thanks G7VJA)
+# 22/08/2023 - 1.17 - Added support Ubuntu 22.04.3 LTS (Thanks IW2DRM )
 #=====================================================================================================
  
 # Fedora Linux 37 (Workstation Edition)#
@@ -77,6 +78,8 @@ check_distro() {
 			elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
       				install_package_debian
 			elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
+      				install_package_debian
+	  		elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
       				install_package_debian
 			elif [ "${distroname}" == "Fedora Linux 37 (Server Edition)" ]; then
       				install_epel_8
