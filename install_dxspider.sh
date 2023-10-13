@@ -267,7 +267,7 @@ echo -e " "
 su - sysop -c "git clone git://scm.dxcluster.org/scm/spider"
 #
 curl -L https://cpanmin.us | perl - App::cpanminus
-cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round
+cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round --force
 
 
 echo -e " "
