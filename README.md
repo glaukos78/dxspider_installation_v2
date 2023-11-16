@@ -17,11 +17,11 @@ Uncompress & change permissions
 
     cd dxspider_installation_v2-devel/
 
-    chmod a+x update_dxspider.sh
+    chmod a+x dxspider_update.sh
 
 Run script and follow the messages.
 
-    ./update_dxspider.sh
+    ./dxspider_update.sh
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
