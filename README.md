@@ -1,5 +1,7 @@
 This script will allow you to update your DXSpider node to the latest build of the MOJO version.
 
+This job is based on the great development of the DXSpider installation script by Yiannis Panagou, SV5FRI.
+
 Before starting the update, a backup of the installation running on your machine will be created.
 It is important that you tell the script the path where DXSpider is installed.
 
@@ -23,20 +25,22 @@ Run script and follow the messages.
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
-    CentOS 7
-    CentOS 7 (AltArch)
-    CentOS 8
-    Rocky 8
-    Raspbian 9 (stretch)
-    Raspbian 10 (buster)
-    Raspbian 11 (bullseye)
-    Debian GNU/Linux 9 (stretch)
-    Debian GNU/Linux 10 (buster)
-    Debian GNU/Linux 11 (bullseye)
-    Ubuntu 22.04 LTS
-    Ubuntu 22.04.1 LTS
-    Fedora Linux 37 (Server Edition)
-    Fedora Linux 37 (Workstation Edition)
+	CentOS 7
+	CentOS 8
+	Rocky 8
+	Raspbian 9 (stretch)
+	Raspbian 10 (buster)
+	Raspbian 11 (bullseye)
+	Debian GNU/Linux 9 (stretch)
+	Debian GNU/Linux 10 (buster)
+	Debian GNU/Linux 11 (bullseye)
+	Ubuntu 22.04 LTS
+	Ubuntu 22.04.1 LTS
+	Ubuntu 22.04.2 LTS
+	Ubuntu 22.04.3 LTS
+	Fedora Linux 37 (Server Edition)
+	Fedora Linux 37 (Workstation Edition)
+	Debian GNU/Linux bookworm/sid
 	
 Remember that it is only for updating, for a new installation look at the development of Yiannis Panagou, SV5FRI at:
 
