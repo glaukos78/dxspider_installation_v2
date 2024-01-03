@@ -31,6 +31,7 @@ Script has been tested on the following Operating Systems (Linux Distributions)
     Debian GNU/Linux 9 (stretch)
     Debian GNU/Linux 10 (buster)
     Debian GNU/Linux 11 (bullseye)
+    Debian GNU/Linux 12 (bookworm)
     Ubuntu 22.04 LTS
     Ubuntu 22.04.1 LTS
     Ubuntu 22.04.2 LTS
