@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.19 - Last Modify 03/01/2024
+# Version 1.20 - Last Modify 09/03/2024
 #
 #Change Log
 #=====================================================================================================
@@ -20,6 +20,9 @@
 # 22/08/2023 - 1.17 - Added support Ubuntu 22.04.3 LTS (Thanks IW2DRM )
 # 13/10/2023 - 1.18 - Added support Raspbian GNU/Linux 12 (bookworm) (Thanks G6HNU )
 # 03/01/2024 - 1.19 - Added support Debian GNU/Linux 12 (bookworm) (Thanks G7VJA )
+# 09/03/2024 - 1.20 - Added support Ubuntu 22.04.4 LTS (Thanks K1AX ) & Added support Fedora Linux 39 (Server Edition), 
+#                     Fedora Linux 39 (Workstation Edition) & Remove suppo Fedora Linux 37 (Server Edition), 
+#                     Fedora Linux 37 (Workstation Edition)
 #=====================================================================================================
  
 # Fedora Linux 37 (Workstation Edition)#
@@ -87,10 +90,12 @@ check_distro() {
       				install_package_debian
 	  		elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
       				install_package_debian
-			elif [ "${distroname}" == "Fedora Linux 37 (Server Edition)" ]; then
+	  		elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
+      				install_package_debian
+			elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
       				install_epel_8
       				install_package_CentOS_8
-			elif [ "${distroname}" == "Fedora Linux 37 (Workstation Edition)" ]; then
+			elif [ "${distroname}" == "Fedora Linux 39 (Workstation Edition)" ]; then
       				install_epel_8
       				install_package_CentOS_8
 			elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
