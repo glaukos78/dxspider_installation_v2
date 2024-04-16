@@ -25,22 +25,25 @@ Run script and follow the messages.
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
-	CentOS 7
-	CentOS 8
-	Rocky 8
-	Raspbian 9 (stretch)
-	Raspbian 10 (buster)
-	Raspbian 11 (bullseye)
+	CentOS Linux 7 (Core)
+	CentOS Linux 8 (Core)
 	Debian GNU/Linux 9 (stretch)
 	Debian GNU/Linux 10 (buster)
 	Debian GNU/Linux 11 (bullseye)
+	Debian GNU/Linux 12 (bookworm)
+	Debian GNU/Linux bookworm/sid
+	Fedora Linux 39 (Server Edition)
+	Fedora Linux 39 (Workstation Edition)
+	Linux Mint 21.1
+	Raspbian GNU/Linux 9 (stretch) 
+	Raspbian GNU/Linux 10 (buster)
+	Raspbian GNU/Linux 11 (bullseye)
+	Raspbian GNU/Linux 12 (bookworm)
 	Ubuntu 22.04 LTS
 	Ubuntu 22.04.1 LTS
-	Ubuntu 22.04.2 LTS
-	Ubuntu 22.04.3 LTS
-	Fedora Linux 37 (Server Edition)
-	Fedora Linux 37 (Workstation Edition)
-	Debian GNU/Linux bookworm/sid
+	Ubuntu 22.04.2 LTSUbuntu 22.04.3 LTS
+	Ubuntu 22.04.4 LTS
+	Rocky Linux 8.5 (Green Obsidian)
 	
 Remember that it is only for updating, for a new installation look at the development of Yiannis Panagou, SV5FRI at:
 
