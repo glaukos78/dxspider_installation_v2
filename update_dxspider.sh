@@ -64,7 +64,7 @@ check_distro() {
         echo -e " "
         read -n 1 -s -r -p $'Press any key to continue...'
         echo -e " "
-
+	
         if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
                                 install_epel_7
                                 install_package_CentOS_7
@@ -84,29 +84,32 @@ check_distro() {
                                 install_package_debian
                         elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
-						elif [ "${distroname}" == "Raspbian GNU/Linux 12 (bookworm)" ]; then
+			elif [ "${distroname}" == "Raspbian GNU/Linux 12 (bookworm)" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
-						elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
-    							install_package_debian
-						elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
-      							install_package_debian
-						elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
-      							install_package_debian
-	  					elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
-      							install_package_debian
-						elif [ "${distroname}" == "Fedora Linux 37 (Server Edition)" ]; then
-      							install_epel_8
-      							install_package_CentOS_8
-						elif [ "${distroname}" == "Fedora Linux 37 (Workstation Edition)" ]; then
-      							install_epel_8
-      							install_package_CentOS_8
-						elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
+			elif [ "${distroname}" == "Debian GNU/Linux 12 (bookworm)" ]; then
                                 install_package_debian
-						elif [ "${distroname}" == "Linux Mint 21.1" ]; then
+			elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
+    				install_package_debian
+			elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
+      				install_package_debian
+			elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
+      				install_package_debian
+	  		elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
+      				install_package_debian
+	  		elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
+      				install_package_debian
+			elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
+      				install_epel_8
+      				install_package_CentOS_8
+			elif [ "${distroname}" == "Fedora Linux 39 (Workstation Edition)" ]; then
+      				install_epel_8
+      				install_package_CentOS_8
+			elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
                                 install_package_debian
- 
+			elif [ "${distroname}" == "Linux Mint 21.1" ]; then
+                                install_package_debian
                 else
                         echo -e " "
                         echo -e "==============================================================="
