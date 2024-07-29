@@ -23,6 +23,7 @@
 # 09/03/2024 - 1.20 - Added support Ubuntu 22.04.4 LTS (Thanks K1AX ) & Added support Fedora Linux 39 (Server Edition), 
 #                     Fedora Linux 39 (Workstation Edition) & Remove suppo Fedora Linux 37 (Server Edition), 
 #                     Fedora Linux 37 (Workstation Edition)
+# 29/07/2024 - 1.21 - Added support Alma Linux 9.4 & Remove CenOS 7
 #=====================================================================================================
  
 # Fedora Linux 37 (Workstation Edition)#
@@ -57,15 +58,15 @@ check_distro() {
         read -n 1 -s -r -p $'Press any key to continue...'
         echo -e " "
 
-        if [ "${distroname}" == "CentOS Linux 7 (Core)" ]; then
-                                install_epel_7
-                                install_package_CentOS_7
-                        elif [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
+        if [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
                                 install_epel_8
                                 install_package_CentOS_8
                         elif [ "${distroname}" == "Rocky Linux 8.5 (Green Obsidian)" ]; then
                                 install_epel_8
                                 install_package_CentOS_8
+			elif [ "${distroname}" == "AlmaLinux release 9.4 (Seafoam Ocelot)" ]; then
+                                install_epel_9
+                                install_package_Rocky_9
                         elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
@@ -151,6 +152,29 @@ install_epel_8() {
 
 # Install extra packages for CentOS 8.x
 install_package_CentOS_8() {
+# Update the system
+	dnf check-update ; dnf -y update
+# Install extra packages
+	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
+}
+
+
+## Rocky 9.x
+#
+install_epel_9() {
+#Install epel repository
+   echo -e "Starting Installation Dxspider Cluster"
+   echo -e " "
+## RHEL/CentOS 9 64-Bit ##
+# Update the system
+    dnf makecache --refresh
+    dnf check-update ; dnf -y update
+# Install the additional package repository EPEL
+    dnf -y install epel-release
+}
+
+# Install extra packages for Rocky 9.x
+install_package_CentOS_9() {
 # Update the system
 	dnf check-update ; dnf -y update
 # Install extra packages
