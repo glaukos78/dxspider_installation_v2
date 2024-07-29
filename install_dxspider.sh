@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.20 - Last Modify 09/03/2024
+# Version 1.21 - Last Modify 29/07/2024
 #
 #Change Log
 #=====================================================================================================
@@ -12,7 +12,7 @@
 # 15/05/2022 - 1.10 - Fix bug installation package into RHEL8/CentOS8/Rocky8
 # 18/05/2022 - 1.11 - Fix installation added curl package for all distributions
 # 18/05/2022 - 1.12 - Minor fix packages to Debian / Raspbian distributions
-# 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition), 
+# 02/01/2023 - 1.13 - Added Ubuntu 22.04 LTS, Ubuntu 22.04.1 LTS, Fedora Linux 37 (Server Edition),
 #                     Fedora Linux 37 (Workstation Edition)
 # 23/01/2023 - 1.14 - Added support Debian GNU/Linux bookworm/sid (Thanks HG8LXL Laci)
 # 23/01/2023 - 1.15 - Added support Ubuntu 22.04.2 LTS (Thanks F5LEN )
@@ -20,13 +20,13 @@
 # 22/08/2023 - 1.17 - Added support Ubuntu 22.04.3 LTS (Thanks IW2DRM )
 # 13/10/2023 - 1.18 - Added support Raspbian GNU/Linux 12 (bookworm) (Thanks G6HNU )
 # 03/01/2024 - 1.19 - Added support Debian GNU/Linux 12 (bookworm) (Thanks G7VJA )
-# 09/03/2024 - 1.20 - Added support Ubuntu 22.04.4 LTS (Thanks K1AX ) & Added support Fedora Linux 39 (Server Edition), 
-#                     Fedora Linux 39 (Workstation Edition) & Remove suppo Fedora Linux 37 (Server Edition), 
+# 09/03/2024 - 1.20 - Added support Ubuntu 22.04.4 LTS (Thanks K1AX ) & Added support Fedora Linux 39 (Server Edition),
+#                     Fedora Linux 39 (Workstation Edition) & Remove suppo Fedora Linux 37 (Server Edition),
 #                     Fedora Linux 37 (Workstation Edition)
-# 29/07/2024 - 1.21 - Added support Alma Linux 9.4 & Remove CenOS 7
+# 29/07/2024 - 1.21 - Added support AlmaLinux 9.4 & Added support Fedora Linux 40 (Server Edition),
+#                     Fedora Linux 40 (Workstation Edition) & Remove CenOS 7
 #=====================================================================================================
- 
-# Fedora Linux 37 (Workstation Edition)#
+#
 #
 # Check the script is being run by root user)
 check_run_user() {
@@ -64,7 +64,7 @@ check_distro() {
                         elif [ "${distroname}" == "Rocky Linux 8.5 (Green Obsidian)" ]; then
                                 install_epel_8
                                 install_package_CentOS_8
-			elif [ "${distroname}" == "AlmaLinux release 9.4 (Seafoam Ocelot)" ]; then
+                        elif [ "${distroname}" == "AlmaLinux 9.4 (Seafoam Ocelot)" ]; then
                                 install_epel_9
                                 install_package_Rocky_9
                         elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
@@ -77,33 +77,39 @@ check_distro() {
                                 install_package_debian
                         elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
-			elif [ "${distroname}" == "Raspbian GNU/Linux 12 (bookworm)" ]; then
+                        elif [ "${distroname}" == "Raspbian GNU/Linux 12 (bookworm)" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
                                 install_package_debian
-			elif [ "${distroname}" == "Debian GNU/Linux 12 (bookworm)" ]; then
+                        elif [ "${distroname}" == "Debian GNU/Linux 12 (bookworm)" ]; then
                                 install_package_debian
-			elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
-    				install_package_debian
-			elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
-      				install_package_debian
-			elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
-      				install_package_debian
-	  		elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
-      				install_package_debian
-	  		elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
-      				install_package_debian
-			elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
-      				install_epel_8
-      				install_package_CentOS_8
-			elif [ "${distroname}" == "Fedora Linux 39 (Workstation Edition)" ]; then
-      				install_epel_8
-      				install_package_CentOS_8
-			elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
+                        elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
                                 install_package_debian
-			elif [ "${distroname}" == "Linux Mint 21.1" ]; then
+                        elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
                                 install_package_debian
-						
+                        elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
+                                install_epel_8
+                                install_package_CentOS_8
+                        elif [ "${distroname}" == "Fedora Linux 39 (Workstation Edition)" ]; then
+                                install_epel_8
+                                install_package_CentOS_8
+			elif [ "${distroname}" == "Fedora Linux 40 (Server Edition)" ]; then
+                                install_epel_9
+                                install_package_Rocky_9
+                        elif [ "${distroname}" == "Fedora Linux 40 (Workstation Edition)" ]; then
+                                install_epel_9
+                                install_package_Rocky_9	
+                        elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
+                                install_package_debian
+                        elif [ "${distroname}" == "Linux Mint 21.1" ]; then
+                                install_package_debian
+
                 else
                         echo -e " "
                         echo -e "==============================================================="
@@ -115,26 +121,6 @@ check_distro() {
         fi
 }
 
-## CentOS 7.x
-#
-install_epel_7() {
-#Install epel repository
-## RHEL/CentOS 7 64-Bit ##
-# Update the system
-    yum check-update ; yum -y update
-# Install the additional package repository EPEL
-    yum -y install epel-release
-}
-
-# Install extra packages for CentOS 7.x
-install_package_CentOS_7() {
-    echo -e "Starting Installation Dxspider Cluster"
-        echo -e " "
-# Update the system
-        yum check-update ; yum -y update
-# Install extra packages
-    yum -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Digest-SHA1 perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-Digest-SHA perl-IO-Compress curl 
-}
 
 ## CentOS 8.x
 #
@@ -153,9 +139,9 @@ install_epel_8() {
 # Install extra packages for CentOS 8.x
 install_package_CentOS_8() {
 # Update the system
-	dnf check-update ; dnf -y update
+        dnf check-update ; dnf -y update
 # Install extra packages
-	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
 }
 
 
@@ -174,14 +160,14 @@ install_epel_9() {
 }
 
 # Install extra packages for Rocky 9.x
-install_package_CentOS_9() {
+install_package_Rocky_9() {
 # Update the system
-	dnf check-update ; dnf -y update
+        dnf check-update ; dnf -y update
 # Install extra packages
-	dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl
 }
 
-## Debian & raspbian
+## Debian & Ubuntu & Raspbian
 #
 install_package_debian() {
     echo -e "Starting Installation Dxspider Cluster"
