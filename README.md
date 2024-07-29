@@ -22,9 +22,9 @@ Run script and follow the messages.
 
 Script has been tested on the following Operating Systems (Linux Distributions)
 
-    CentOS 7
     CentOS 8
     Rocky 8
+    Alma Linux 9
     Raspbian 9 (stretch)
     Raspbian 10 (buster)
     Raspbian 11 (bullseye)
