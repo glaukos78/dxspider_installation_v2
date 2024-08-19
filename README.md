@@ -39,4 +39,6 @@ Script has been tested on the following Operating Systems (Linux Distributions)
     Ubuntu 22.04.4 LTS
     Fedora Linux 39 (Server Edition)
     Fedora Linux 39 (Workstation Edition)
+    Fedora Linux 40 (Server Edition)
+    Fedora Linux 40 (Workstation Edition)
     Debian GNU/Linux bookworm/sid
