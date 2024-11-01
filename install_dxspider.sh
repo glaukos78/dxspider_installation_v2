@@ -25,7 +25,7 @@
 #                     Fedora Linux 37 (Workstation Edition)
 # 29/07/2024 - 1.21 - Added support AlmaLinux 9.4 & Added support Fedora Linux 40 (Server Edition),
 #                     Fedora Linux 40 (Workstation Edition) & Remove CenOS 7
-# 01/11/2024 - 1.22 - Added support Ubuntu 24.04.1 LTS & make fix package manager for Debian and Ubuntu
+# 01/11/2024 - 1.22 - Added support Ubuntu 24.04.1 LTS & Make fix (apt) package manager for Debian and Ubuntu (Thanks VK4SE)  
 #=====================================================================================================
 #
 #
