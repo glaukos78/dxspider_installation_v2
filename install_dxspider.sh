@@ -176,9 +176,9 @@ install_package_debian() {
     echo -e "Starting Installation Dxspider Cluster"
         echo -e " "
 # Update the system
-    apt-get update ; apt-get -y upgrade
+    apt update ; apt -y upgrade
 # Install extra packages
-    apt-get -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
+    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
 }
 
 
