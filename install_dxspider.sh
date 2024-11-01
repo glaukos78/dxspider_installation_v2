@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.21 - Last Modify 29/07/2024
+# Version 1.22 - Last Modify 01/11/2024
 #
 #Change Log
 #=====================================================================================================
@@ -25,6 +25,7 @@
 #                     Fedora Linux 37 (Workstation Edition)
 # 29/07/2024 - 1.21 - Added support AlmaLinux 9.4 & Added support Fedora Linux 40 (Server Edition),
 #                     Fedora Linux 40 (Workstation Edition) & Remove CenOS 7
+# 01/11/2024 - 1.22 - Added support Ubuntu 24.04.1 LTS
 #=====================================================================================================
 #
 #
@@ -92,6 +93,8 @@ check_distro() {
                         elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
+                                install_package_debian
+			elif [ "${distroname}" == "Ubuntu 24.04.1 LTS" ]; then
                                 install_package_debian
                         elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
                                 install_epel_8
