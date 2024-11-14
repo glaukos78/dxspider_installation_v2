@@ -109,7 +109,7 @@ install_package_CentOS_8() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB
 }
 
 
@@ -132,7 +132,7 @@ install_package_Rocky_9() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB
 }
 
 ## Debian & Ubuntu & Raspbian
