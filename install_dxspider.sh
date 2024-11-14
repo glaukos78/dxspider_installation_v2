@@ -53,6 +53,11 @@ load_distro_actions() {
 
     # Load each line from config file
     while IFS=, read -r name actions; do
+        # Trim any leading/trailing whitespace from name and actions
+        name=$(echo "$name" | xargs)
+        actions=$(echo "$actions" | xargs)
+
+        # Store in associative array
         distro_actions["$name"]="$actions"
     done < distro_actions.conf
 }
@@ -78,7 +83,7 @@ check_distro() {
         echo -e "      Your OS distribution is ${distroname}"
         echo -e "===============================================================\n"
         read -n 1 -s -r -p $'Press any key to continue...\n\n'
-
+        
         # Execute the mapped actions for the distribution
         eval "${distro_actions[$distroname]}"
     else
