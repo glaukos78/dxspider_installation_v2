@@ -30,6 +30,7 @@
 # 14/11/2024 - 1.24 - Make changes to function Check ditribution and version. Make new way to read distrobution and version
 #                     Added support Fedora Linux 41 (Server Edition), Fedora Linux 41 (Workstation Edition).
 #                     Add libraries libdbd-mysql-perl libdbd-mariadb-perl - Maybe also include installation of libdbd-mysql-perl #6
+#                     Remove Fedora Linux 39 (Server Edition), Fedora Linux 39 (Workstation Edition)
 #=================================================================================================================================
 #
 #
