@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.23 - Last Modify 11/11/2024
+# Version 1.24 - Last Modify 14/11/2024
 #
 #Change Log
 #=====================================================================================================
@@ -25,9 +25,12 @@
 #                     Fedora Linux 37 (Workstation Edition)
 # 29/07/2024 - 1.21 - Added support AlmaLinux 9.4 & Added support Fedora Linux 40 (Server Edition),
 #                     Fedora Linux 40 (Workstation Edition) & Remove CenOS 7
-# 01/11/2024 - 1.22 - Added support Ubuntu 24.04.1 LTS & Make fix (apt) package manager for Debian and Ubuntu (Thanks VK4SE) 
-# 11/11/2024 - 1.23 -Add Ubundu 24.04 LTS
-#=====================================================================================================
+# 01/11/2024 - 1.22 - Added support Ubuntu 24.04.1 LTS & Make fix (apt) package manager for Debian and Ubuntu (Thanks VK4SE)
+# 11/11/2024 - 1.23 - Add Ubundu 24.04 LTS
+# 14/11/2024 - 1.24 - Make changes to function Check ditribution and version. Make new way to read distrobution and version
+#                     Added support Fedora Linux 41 (Server Edition), Fedora Linux 41 (Workstation Edition).
+#                     Add libraries libdbd-mysql-perl libdbd-mariadb-perl - Maybe also include installation of libdbd-mysql-perl #6
+#=================================================================================================================================
 #
 #
 # Check the script is being run by root user)
@@ -38,93 +41,52 @@ if [ "$(id -u)" != "0" ]; then
 fi
 }
 
-# Function Check Distribution and Version
+# Load distro actions from external file
+load_distro_actions() {
+    declare -gA distro_actions  # Declare a global associative array
+
+    # Check if config file exists
+    if [ ! -f "distro_actions.conf" ]; then
+        echo "Configuration file 'distro_actions.conf' not found!"
+        exit 1
+    fi
+
+    # Load each line from config file
+    while IFS=, read -r name actions; do
+        distro_actions["$name"]="$actions"
+    done < distro_actions.conf
+}
+
+# Function to check OS distribution and version
 check_distro() {
+    arch=$(uname -m)
+    kernel=$(uname -r)
+    if [ -f "/etc/os-release" ]; then
+        distroname=$(grep PRETTY_NAME /etc/os-release | sed 's/PRETTY_NAME=//g' | tr -d '="')
+    elif [ -f "/etc/redhat-release" ]; then
+        distroname=$(cat /etc/redhat-release)
+    else
+        distroname="$(uname -s) $(uname -r)"
+    fi
 
-        arch=$(uname -m)
-        kernel=$(uname -r)
-        if [ -f "/etc/os-release" ]; then
-                distroname=$(grep PRETTY_NAME /etc/os-release | sed 's/PRETTY_NAME=//g' | tr -d '="')
-        elif [ -f "/etc/redhat-release" ]; then
-                distroname=$(cat /etc/redhat-release)
-        else
-                distroname="$(uname -s) $(uname -r)"
-        fi
+    # Load actions from config file
+    load_distro_actions
 
-        echo -e " "
-        echo -e "==============================================================="
+    # Check if distribution is supported
+    if [[ -n "${distro_actions[$distroname]}" ]]; then
+        echo -e "\n==============================================================="
         echo -e "      Your OS distribution is ${distroname}"
-        echo -e "=============================================================== "
-        echo -e " "
-        echo -e " "
-        read -n 1 -s -r -p $'Press any key to continue...'
-        echo -e " "
+        echo -e "===============================================================\n"
+        read -n 1 -s -r -p $'Press any key to continue...\n\n'
 
-        if [ "${distroname}" == "CentOS Linux 8 (Core)" ]; then
-                                install_epel_8
-                                install_package_CentOS_8
-                        elif [ "${distroname}" == "Rocky Linux 8.5 (Green Obsidian)" ]; then
-                                install_epel_8
-                                install_package_CentOS_8
-                        elif [ "${distroname}" == "AlmaLinux 9.4 (Seafoam Ocelot)" ]; then
-                                install_epel_9
-                                install_package_Rocky_9
-                        elif [ "${distroname}" == "Raspbian GNU/Linux 9 (stretch)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Debian GNU/Linux 9 (stretch)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Raspbian GNU/Linux 10 (buster)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Debian GNU/Linux 10 (buster)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Raspbian GNU/Linux 11 (bullseye)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Raspbian GNU/Linux 12 (bookworm)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Debian GNU/Linux 11 (bullseye)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Debian GNU/Linux 12 (bookworm)" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Ubuntu 22.04 LTS" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Ubuntu 22.04.1 LTS" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Ubuntu 22.04.2 LTS" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Ubuntu 22.04.3 LTS" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Ubuntu 22.04.4 LTS" ]; then
-                                install_package_debian
-			elif [ "${distroname}" == "Ubuntu 24.04.1 LTS" ]; then
-                                install_package_debian
-			elif [ "${distroname}" == "Ubuntu 24.04 LTS" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Fedora Linux 39 (Server Edition)" ]; then
-                                install_epel_8
-                                install_package_CentOS_8
-                        elif [ "${distroname}" == "Fedora Linux 39 (Workstation Edition)" ]; then
-                                install_epel_8
-                                install_package_CentOS_8
-			elif [ "${distroname}" == "Fedora Linux 40 (Server Edition)" ]; then
-                                install_epel_9
-                                install_package_Rocky_9
-                        elif [ "${distroname}" == "Fedora Linux 40 (Workstation Edition)" ]; then
-                                install_epel_9
-                                install_package_Rocky_9	
-                        elif [ "${distroname}" == "Debian GNU/Linux bookworm/sid" ]; then
-                                install_package_debian
-                        elif [ "${distroname}" == "Linux Mint 21.1" ]; then
-                                install_package_debian
-
-                else
-                        echo -e " "
-                        echo -e "==============================================================="
-                        echo -e "      Your OS distribution ${distroname} is not supported"
-                        echo -e "=============================================================== "
-                        echo -e " "
-                        echo -e " "
-            exit 1
-        fi
+        # Execute the mapped actions for the distribution
+        eval "${distro_actions[$distroname]}"
+    else
+        echo -e "\n==============================================================="
+        echo -e "      Your OS distribution ${distroname} is not supported"
+        echo -e "===============================================================\n"
+        exit 1
+    fi
 }
 
 
@@ -181,7 +143,7 @@ install_package_debian() {
 # Update the system
     apt update ; apt -y upgrade
 # Install extra packages
-    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl
+    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl libdbd-mysql-perl libdbd-mariadb-perl
 }
 
 
@@ -316,7 +278,7 @@ ln -s /spider/perl/console.pl /usr/local/bin/dx
 ln -s /spider/perl/*dbg /usr/local/bin
 #
 su - sysop -c "cd /home/sysop"
-su - sysop -c "chown -R sysop.spider spider"
+su - sysop -c "chown -R sysop:spider spider"
 su - sysop -c "find ./ -type d -exec chmod 2775 {} \;"
 su - sysop -c "find ./ -type f -exec chmod 775 {} \;"
 su - sysop -c "mkdir -p /spider/local"
