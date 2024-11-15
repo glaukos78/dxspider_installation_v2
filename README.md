@@ -1,91 +1,121 @@
-Key Features of the DXSpider Installation Script
+# DXSpider Installation Script
 
-This script is designed to install and configure a DXSpider Cluster using the MOJO repository efficiently and in just a few minutes. Here are its main advantages:
+This script is designed to install and configure a **DXSpider Cluster** using the **MOJO repository** efficiently and in just a few minutes.
 
-Installation Steps for DXSpider
+## Key Features
+- **Quick and Easy Installation**: Automates the setup process, allowing a functional DXSpider cluster to be deployed in minimal time.
+- **Wide OS Compatibility**: Tested and verified to work on numerous Linux distributions (details below).
+- **Minimal User Interaction**: Handles complex configurations with simple steps and prompts.
 
-Follow the steps below to install DXSpider using the provided script. Ensure you are logged in as the root user or have appropriate privileges to run these commands:
+---
 
-1. Download the Installation Script
+## Installation Steps for DXSpider
 
-Use wget to download the script from the GitHub repository:
+Follow the steps below to install DXSpider using the provided script. Ensure you are logged in as the **root user** or have appropriate privileges.
 
+### 1. Download the Installation Script
+Use `wget` to download the script from the GitHub repository:
+
+```bash
 wget https://github.com/glaukos78/dxspider_installation_v2/archive/refs/heads/main.zip -O dxspider_installation.zip
+```
 
-2. Verify Root Privileges
+---
 
+### 2. Verify Root Privileges
 Ensure you are running as the root user before proceeding. You can check this with:
 
+```bash
 whoami
+```
 
-If the output is not root, switch to the root user or use sudo where necessary.
-3. Uncompress and Set Permissions
+If the output is not `root`, switch to the root user or use `sudo` where necessary.
 
-Unzip the downloaded file and navigate to the extracted directory. Then, set the appropriate permissions for the installation script:
+---
 
+### 3. Uncompress and Set Permissions
+Unzip the downloaded file, navigate to the extracted directory, and set the appropriate permissions for the installation script:
+
+```bash
 unzip dxspider_installation.zip
 cd dxspider_installation_v2-main/
 chmod a+x install_dxspider.sh
+```
 
-4. Run the Installation Script
+---
 
+### 4. Run the Installation Script
 Execute the installation script and follow the on-screen prompts to complete the setup:
 
+```bash
 ./install_dxspider.sh
+```
 
 By following these steps, DXSpider will be installed on your system. If you encounter any errors, ensure all dependencies are met and permissions are correctly set.
 
-Supported Operating Systems for DXSpider Installation Script
+---
+
+## Supported Operating Systems
 
 The installation script has been tested and verified to work on the following Linux distributions:
 
-CentOS
+### CentOS
+- CentOS Linux 8 (Core)
 
-    CentOS Linux 8 (Core)
+### Rocky Linux
+- Rocky Linux 8.5 (Green Obsidian)
+- Rocky Linux 9.4 (Blue Onyx)
 
-Rocky Linux
+### AlmaLinux
+- AlmaLinux 9.4 (Seafoam Ocelot)
 
-    Rocky Linux 8.5 (Green Obsidian)
-    Rocky Linux 9.4 (Blue Onyx)
+### Raspbian (Debian-based)
+- Raspbian GNU/Linux 9 (stretch)
+- Raspbian GNU/Linux 10 (buster)
+- Raspbian GNU/Linux 11 (bullseye)
+- Raspbian GNU/Linux 12 (bookworm)
 
-AlmaLinux
+### Debian
+- Debian GNU/Linux 9 (stretch)
+- Debian GNU/Linux 10 (buster)
+- Debian GNU/Linux 11 (bullseye)
+- Debian GNU/Linux 12 (bookworm)
+- Debian GNU/Linux bookworm/sid
 
-    AlmaLinux 9.4 (Seafoam Ocelot)
+### Ubuntu
+- Ubuntu 22.04 LTS
+- Ubuntu 22.04.1 LTS
+- Ubuntu 22.04.2 LTS
+- Ubuntu 22.04.3 LTS
+- Ubuntu 22.04.4 LTS
+- Ubuntu 24.04 LTS
+- Ubuntu 24.04.1 LTS
 
-Raspbian (Debian-based)
+### Fedora
+- Fedora Linux 40 (Server Edition)
+- Fedora Linux 40 (Workstation Edition)
+- Fedora Linux 41 (Server Edition)
+- Fedora Linux 41 (Workstation Edition)
 
-    Raspbian GNU/Linux 9 (stretch)
-    Raspbian GNU/Linux 10 (buster)
-    Raspbian GNU/Linux 11 (bullseye)
-    Raspbian GNU/Linux 12 (bookworm)
+### Linux Mint
+- Linux Mint 21.1
 
-Debian
+---
 
-    Debian GNU/Linux 9 (stretch)
-    Debian GNU/Linux 10 (buster)
-    Debian GNU/Linux 11 (bullseye)
-    Debian GNU/Linux 12 (bookworm)
-    Debian GNU/Linux bookworm/sid
+## Notes
+- Ensure you are using one of the above operating systems for compatibility with the script.
+- If your distribution is not listed, the script might still work, but functionality has not been officially confirmed.
 
-Ubuntu
+---
 
-    Ubuntu 22.04 LTS
-    Ubuntu 22.04.1 LTS
-    Ubuntu 22.04.2 LTS
-    Ubuntu 22.04.3 LTS
-    Ubuntu 22.04.4 LTS
-    Ubuntu 24.04 LTS
-    Ubuntu 24.04.1 LTS
+## License
+This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for details.
 
-Fedora
+---
 
-    Fedora Linux 40 (Server Edition)
-    Fedora Linux 40 (Workstation Edition)
-    Fedora Linux 41 (Server Edition)
-    Fedora Linux 41 (Workstation Edition)
+### Author
+Developed by **SV5FRI**.
 
-Linux Mint
+For issues or contributions, feel free to open a GitHub issue or submit a pull request.
 
-    Linux Mint 21.1
-
-Ensure you are using one of the above operating systems for compatibility with the script. If your distribution is not listed, the script might still work, but functionality has not been officially confirmed.
+---
