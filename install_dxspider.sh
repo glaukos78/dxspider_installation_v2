@@ -31,7 +31,7 @@
 #                     Added support Fedora Linux 41 (Server Edition), Fedora Linux 41 (Workstation Edition).
 #                     Add libraries libdbd-mysql-perl libdbd-mariadb-perl - Maybe also include installation of libdbd-mysql-perl #6
 #                     Remove Fedora Linux 39 (Server Edition), Fedora Linux 39 (Workstation Edition)
-# 30/03/2025 - 1.25 - Added Ubundu 24.04.02 LTS and removed Debian GNU/Linux bookworm/sid
+# 30/03/2025 - 1.25 - Added Ubundu 24.04.2 LTS and removed Debian GNU/Linux bookworm/sid
 #=================================================================================================================================
 #
 #
