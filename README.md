@@ -80,7 +80,6 @@ The installation script has been tested and verified to work on the following Li
 - Debian GNU/Linux 10 (buster)
 - Debian GNU/Linux 11 (bullseye)
 - Debian GNU/Linux 12 (bookworm)
-- Debian GNU/Linux bookworm/sid
 
 ### Ubuntu
 - Ubuntu 22.04 LTS
@@ -90,6 +89,7 @@ The installation script has been tested and verified to work on the following Li
 - Ubuntu 22.04.4 LTS
 - Ubuntu 24.04 LTS
 - Ubuntu 24.04.1 LTS
+- Ubuntu 24.04.2 LTS
 
 ### Fedora
 - Fedora Linux 40 (Server Edition)
