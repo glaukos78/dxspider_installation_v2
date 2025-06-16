@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.25 - Last Modify 30/03/2025
+# Version 1.26 - Last Modify 16/06/2025
 #
 #Change Log
 #=====================================================================================================
@@ -32,6 +32,7 @@
 #                     Add libraries libdbd-mysql-perl libdbd-mariadb-perl - Maybe also include installation of libdbd-mysql-perl #6
 #                     Remove Fedora Linux 39 (Server Edition), Fedora Linux 39 (Workstation Edition)
 # 30/03/2025 - 1.25 - Added Ubundu 24.04.2 LTS and removed Debian GNU/Linux bookworm/sid
+# 16/06/2025 - 1.26 - Added Ubundu 25.04
 #=================================================================================================================================
 #
 #
