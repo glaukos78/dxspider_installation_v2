@@ -90,6 +90,7 @@ The installation script has been tested and verified to work on the following Li
 - Ubuntu 24.04 LTS
 - Ubuntu 24.04.1 LTS
 - Ubuntu 24.04.2 LTS
+- Ubuntu 25.04
 
 ### Fedora
 - Fedora Linux 40 (Server Edition)
