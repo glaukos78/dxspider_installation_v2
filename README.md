@@ -80,6 +80,7 @@ The installation script has been tested and verified to work on the following Li
 - Debian GNU/Linux 10 (buster)
 - Debian GNU/Linux 11 (bullseye)
 - Debian GNU/Linux 12 (bookworm)
+- Debian GNU/Linux 13 (trixie)
 
 ### Ubuntu
 - Ubuntu 22.04 LTS
