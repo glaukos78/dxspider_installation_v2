@@ -261,7 +261,7 @@ ln -s /home/sysop/spider /spider
 # Download Application dxspider with git
 echo -e "Now starting to download application DxSpider"
 echo -e " "
-su - sysop -c "git clone git://scm.dxcluster.org/scm/spider"
+su - sysop -c "git clone git://scm.dxcluster.org/spider"
 #
 curl -L https://cpanmin.us | perl - App::cpanminus
 cpanm EV Mojolicious JSON JSON::XS Data::Structure::Util Math::Round --force
