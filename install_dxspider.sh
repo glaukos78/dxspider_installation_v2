@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.26 - Last Modify 16/06/2025
+# Version 1.27 - Last Modify 03/07/2026
 #
 #Change Log
 #=====================================================================================================
@@ -33,9 +33,10 @@
 #                     Remove Fedora Linux 39 (Server Edition), Fedora Linux 39 (Workstation Edition)
 # 30/03/2025 - 1.25 - Added Ubundu 24.04.2 LTS and removed Debian GNU/Linux bookworm/sid
 # 16/06/2025 - 1.26 - Added Ubundu 25.04 (Thanks G0YCE)
-#=================================================================================================================================
+# 03/07/2026 - 1.27 - Added package perl-DBD-SQLite (RedHat, Fedora, CentOS, Rocky) & libdbd-sqlite3-perl (Debian, Ubuntu, Raspbian)
+#================================================++++=================================================================================
 #
-#
+# 
 # Check the script is being run by root user)
 check_run_user() {
 if [ "$(id -u)" != "0" ]; then
