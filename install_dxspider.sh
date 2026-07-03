@@ -117,7 +117,7 @@ install_package_CentOS_8() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite
 }
 
 
@@ -140,7 +140,7 @@ install_package_Rocky_9() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite
 }
 
 ## Debian & Ubuntu & Raspbian
@@ -151,7 +151,7 @@ install_package_debian() {
 # Update the system
     apt update ; apt -y upgrade
 # Install extra packages
-    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl  libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl libdbd-mysql-perl
+    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl libdbd-sqlite3-perl libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl libdbd-mysql-perl
 }
 
 
