@@ -3,7 +3,7 @@
 # Create By Yiannis Panagou, SV5FRI
 # https://www.sv5fri.eu
 # E-mail:sv5fri@gmail.com
-# Version 1.27 - Last Modify 03/07/2026
+# Version 1.28 - Last Modify 04/07/2026
 #
 #Change Log
 #=====================================================================================================
@@ -34,7 +34,8 @@
 # 30/03/2025 - 1.25 - Added Ubundu 24.04.2 LTS and removed Debian GNU/Linux bookworm/sid
 # 16/06/2025 - 1.26 - Added Ubundu 25.04 (Thanks G0YCE)
 # 03/07/2026 - 1.27 - Added package perl-DBD-SQLite (RedHat, Fedora, CentOS, Rocky) & libdbd-sqlite3-perl (Debian, Ubuntu, Raspbian)
-#================================================++++=================================================================================
+# 04/07/2026 - 1.28 - Added package libnet-mqtt-simple-perl (Debian, Ubuntu, Raspbian) & perl-Net-MQTT-Simple (RedHat, Fedora, CentOS, Rocky)
+#================================================++++==========================================================================================
 #
 # 
 # Check the script is being run by root user)
@@ -118,7 +119,7 @@ install_package_CentOS_8() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite perl-Net-MQTT-Simple
 }
 
 
@@ -141,7 +142,7 @@ install_package_Rocky_9() {
 # Update the system
         dnf check-update ; dnf -y update
 # Install extra packages
-        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite
+        dnf -y install perl git gcc make perl-TimeDate perl-Time-HiRes perl-Curses perl-Net-Telnet perl-Data-Dumper perl-DB_File perl-ExtUtils-MakeMaker perl-Digest-MD5 perl-IO-Compress perl-Digest-SHA perl-Net-CIDR-Lite curl perl-DBD-MySQL perl-DBD-MariaDB perl-DBD-SQLite perl-Net-MQTT-Simple
 }
 
 ## Debian & Ubuntu & Raspbian
@@ -152,7 +153,7 @@ install_package_debian() {
 # Update the system
     apt update ; apt -y upgrade
 # Install extra packages
-    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl libdbd-sqlite3-perl libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl libdbd-mysql-perl
+    apt -y install perl libtimedate-perl libnet-telnet-perl libcurses-perl libdigest-sha-perl libdata-dumper-simple-perl git libjson-perl libmojolicious-perl libdbd-sqlite3-perl libdata-structure-util-perl libmath-round-perl libev-perl libjson-xs-perl build-essential procps libnet-cidr-lite-perl curl libdbd-mysql-perl libnet-mqtt-simple-perl
 }
 
 
